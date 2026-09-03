@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: aggregation
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.jdbc.autoconfigure.DataSourceAutoConfiguration
+      - org.springframework.boot.jdbc.autoconfigure.JdbcTemplateAutoConfiguration
+  # The application does not use the default Liquibase auto-configuration; each
+  # configured data source is migrated programmatically (see DataSourceMigrationRunner).
+  liquibase:
+    enabled: false
+
+server:
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+aggregation:
+  data-sources:
+    - name: data-base-1
+      strategy: postgres
+      url: ${DB1_URL:jdbc:postgresql://localhost:5432/db1}
+      driverClassName: org.postgresql.Driver
+      table: users
+      user: ${DB1_USER:testuser}
+      password: ${DB1_PASSWORD:testpass}
+      changelog: db/changelog/postgres/postgres-changelog.xml
+      mapping:
+        id: user_id
+        username: login
+        name: first_name
+        surname: last_name
+    - name: data-base-2
+      strategy: mysql
+      url: ${DB2_URL:jdbc:mysql://localhost:3306/db2}
+      driverClassName: com.mysql.cj.jdbc.Driver
+      table: user_table
+      user: ${DB2_USER:testuser}
+      password: ${DB2_PASSWORD:testpass}
+      changelog: db/changelog/mysql/mysql-changelog.xml
+      mapping:
+        id: ldap_login
+        username: ldap_login
+        name: name
+        surname: surname
+    - name: data-base-3
+      strategy: oracle
+      url: ${DB3_URL:jdbc:oracle:thin:@localhost:1521/FREEPDB1}
+      driverClassName: oracle.jdbc.OracleDriver
+      table: APP_USERS
+      user: ${DB3_USER:testuser}
+      password: ${DB3_PASSWORD:testpass}
+      changelog: db/changelog/oracle/oracle-changelog.xml
+      mapping:
+        id: USER_ID
+        username: LOGIN
+        name: FIRST_NAME
+        surname: LAST_NAME
