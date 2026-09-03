@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <!-- mysql-create-user-table -->
+    <changeSet id="8b6d1f20-6a11-4c3e-9f2a-1e2d3c4b5a03" author="Ivan Bondar">
+        <createTable tableName="user_table">
+            <column name="ldap_login" type="VARCHAR(128)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(128)"/>
+            <column name="surname" type="VARCHAR(128)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- mysql-seed-user-table -->
+    <changeSet id="8b6d1f20-6a11-4c3e-9f2a-1e2d3c4b5a04" author="Ivan Bondar">
+        <insert tableName="user_table">
+            <column name="ldap_login" value="user-2"/>
+            <column name="name" value="Testuser"/>
+            <column name="surname" value="Testov"/>
+        </insert>
+        <insert tableName="user_table">
+            <column name="ldap_login" value="user-4"/>
+            <column name="name" value="Petro"/>
+            <column name="surname" value="Petrenko"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

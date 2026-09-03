@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <!-- postgres-create-users -->
+    <changeSet id="8b6d1f20-6a11-4c3e-9f2a-1e2d3c4b5a01" author="Ivan Bondar">
+        <createTable tableName="users">
+            <column name="user_id" type="VARCHAR(64)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="login" type="VARCHAR(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(128)"/>
+            <column name="last_name" type="VARCHAR(128)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- postgres-seed-users -->
+    <changeSet id="8b6d1f20-6a11-4c3e-9f2a-1e2d3c4b5a02" author="Ivan Bondar">
+        <insert tableName="users">
+            <column name="user_id" value="3f2504e0-4f89-41d3-9a0c-0305e82c3301"/>
+            <column name="login" value="user-1"/>
+            <column name="first_name" value="User"/>
+            <column name="last_name" value="Userenko"/>
+        </insert>
+        <insert tableName="users">
+            <column name="user_id" value="3f2504e0-4f89-41d3-9a0c-0305e82c3303"/>
+            <column name="login" value="user-3"/>
+            <column name="first_name" value="Ivan"/>
+            <column name="last_name" value="Bondar"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
