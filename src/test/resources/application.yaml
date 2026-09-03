@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: aggregation
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.jdbc.autoconfigure.DataSourceAutoConfiguration
+      - org.springframework.boot.jdbc.autoconfigure.JdbcTemplateAutoConfiguration
+  liquibase:
+    enabled: false
