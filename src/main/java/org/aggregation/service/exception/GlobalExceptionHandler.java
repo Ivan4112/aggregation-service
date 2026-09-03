@@ -1,7 +1,6 @@
-package org.aggregation.service.api;
+package org.aggregation.service.exception;
 
 import lombok.extern.slf4j.Slf4j;
-import org.aggregation.service.service.UsersNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ExceptionHandler;

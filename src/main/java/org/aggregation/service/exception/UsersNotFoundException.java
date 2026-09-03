@@ -1,4 +1,4 @@
-package org.aggregation.service.service;
+package org.aggregation.service.exception;
 
 public class UsersNotFoundException extends RuntimeException {
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import org.aggregation.service.config.DataSourcesProperties;
+import org.aggregation.service.exception.UsersNotFoundException;
 import org.aggregation.service.model.User;
 import org.aggregation.service.model.UserFilter;
 import org.aggregation.service.repository.UserAggregationRepository;
