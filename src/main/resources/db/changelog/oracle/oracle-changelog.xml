@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <!-- oracle-create-app-users -->
+    <changeSet id="8b6d1f20-6a11-4c3e-9f2a-1e2d3c4b5a05" author="Ivan Bondar">
+        <createTable tableName="APP_USERS">
+            <column name="USER_ID" type="VARCHAR2(64)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="LOGIN" type="VARCHAR2(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIRST_NAME" type="VARCHAR2(128)"/>
+            <column name="LAST_NAME" type="VARCHAR2(128)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- oracle-seed-app-users -->
+    <changeSet id="8b6d1f20-6a11-4c3e-9f2a-1e2d3c4b5a06" author="Ivan Bondar">
+        <insert tableName="APP_USERS">
+            <column name="USER_ID" value="3f2504e0-4f89-41d3-9a0c-0305e82c3305"/>
+            <column name="LOGIN" value="user-5"/>
+            <column name="FIRST_NAME" value="Olena"/>
+            <column name="LAST_NAME" value="Kovalenko"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

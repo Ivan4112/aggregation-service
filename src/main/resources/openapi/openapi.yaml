@@ -1,0 +1,91 @@
+openapi: 3.0.3
+info:
+  title: Users Aggregation API
+  description: >-
+    Aggregates users data from multiple databases and exposes them through a
+    single REST endpoint.
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+servers:
+  - url: http://localhost:8080
+    description: Local server
+paths:
+  /users:
+    get:
+      tags:
+        - Users
+      summary: Get aggregated users
+      description: >-
+        Selects and aggregates users from every configured data source.
+        Optional query parameters filter the result and are pushed down into
+        each source query.
+      operationId: getUsers
+      parameters:
+        - name: id
+          in: query
+          required: false
+          description: Filter by user id
+          schema:
+            type: string
+        - name: username
+          in: query
+          required: false
+          description: Filter by username
+          schema:
+            type: string
+        - name: name
+          in: query
+          required: false
+          description: Filter by name
+          schema:
+            type: string
+        - name: surname
+          in: query
+          required: false
+          description: Filter by surname
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Aggregated list of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+        "404":
+          description: No users matched the request
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: example-user-id-1
+        username:
+          type: string
+          example: user-1
+        name:
+          type: string
+          example: User
+        surname:
+          type: string
+          example: Userenko
+    ProblemDetail:
+      type: object
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
